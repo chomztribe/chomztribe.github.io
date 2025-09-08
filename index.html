@@ -6,7 +6,7 @@
     
     <!-- SEO Meta Tags with Brand and Name Focus -->
     <title>Jacqueline Musiba-Yapo | ChomzTribe Coaching - Career Coach London | Executive Career Coaching UK</title>
-    <meta name="description" content="ChomzTribe Coaching by Jacqueline Musiba-Yapo, MCIPD - Strategic Career Coach with 15+ years experience. Expert in CV optimization, interview coaching, executive presence. Book your free strategy session with Jacqueline today.">
+    <meta name="description" content="ChomzTribe Coaching by Jacqueline Musiba-Yapo, MCIPD - Strategic Career Coach with 15+ years experience. Expert in CV optimization, interview coaching, executive presence. Book a session with Jacqueline today.">
     <meta name="keywords" content="ChomzTribe, ChomzTribe Coaching, Chomz Tribe, Jacqueline Musiba-Yapo, Jacqueline Musiba, Musiba-Yapo, Jacqueline Yapo, career coach London, executive coaching UK, career coaching services, CV optimization, interview coaching, career transition, LinkedIn optimization, salary negotiation, leadership coaching, career development, professional coaching UK, MCIPD coach, CIPD career coach">
     <meta name="author" content="Jacqueline Musiba-Yapo, ChomzTribe Coaching">
     <meta name="robots" content="index, follow">
@@ -788,8 +788,8 @@
                     <p class="hero-subtitle">Leveraging 15+ years of experience driving talent excellence across banking, financial services, consultancy, and healthcare sectors.</p>
                     <p class="text-white mb-4">Transform your career with proven, data-driven strategies from an insider who knows exactly what decision-makers want.</p>
                     <div class="d-flex gap-3 flex-wrap">
-                        <a href="#contact" class="btn btn-primary-custom" aria-label="Schedule a free career coaching strategy session">
-                            Schedule Strategy Session
+                        <a href="#contact" class="btn btn-primary-custom" aria-label="Schedule a free career coaching session">
+                            Schedule a Session
                         </a>
                     </div>
                 </div>
@@ -1062,7 +1062,13 @@
                 <div class="col-lg-8" data-aos="fade-left">
                     <div class="form-wrapper">
                         <form class="contact-form" id="contactForm">
-                            <h4 class="mb-4">Schedule a Session</h4>
+                            <!-- Web3Forms Access Key -->
+                            <input type="hidden" name="access_key" value="1bd72fac-b2ff-4122-8150-13e1a3f4b7e1">
+                            
+                            <!-- Email Subject -->
+                            <input type="hidden" name="subject" value="New Career Coaching Inquiry - ChomzTribe">
+                            
+                            <h4 class="mb-4">Schedule Your Session</h4>
                             <div class="row">
                                 <div class="col-md-6 mb-3">
                                     <label class="form-label">First Name *</label>
@@ -1102,7 +1108,11 @@
                                 <label class="form-label">Tell me about your career goals</label>
                                 <textarea class="form-control" name="message" rows="4"></textarea>
                             </div>
-                            <button type="submit" class="btn btn-primary-custom btn-lg w-100">
+                            
+                            <!-- Honeypot Spam Protection -->
+                            <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                            
+                            <button type="submit" class="btn btn-primary-custom btn-lg w-100" id="submitBtn">
                                 Submit Request
                             </button>
                         </form>
@@ -1214,20 +1224,54 @@
             }
         });
         
-        // Form submission handler
+        // Form submission handler with Web3Forms
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
+            // Get the submit button and disable it
+            const submitBtn = document.getElementById('submitBtn');
+            const originalText = submitBtn.textContent;
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Sending...';
+            
             // Get form data
             const formData = new FormData(this);
-            const data = Object.fromEntries(formData);
             
-            // Log the data (in production, this would be sent to a server)
-            console.log('Form Data Submitted:', data);
-            
-            // Show success overlay with animation
-            const overlay = document.getElementById('formOverlay');
-            overlay.classList.add('show');
+            // Submit to Web3Forms
+            fetch('https://api.web3forms.com/submit', {
+                method: 'POST',
+                body: formData
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    // Show success overlay
+                    const overlay = document.getElementById('formOverlay');
+                    overlay.classList.add('show');
+                    
+                    // Reset form
+                    document.getElementById('contactForm').reset();
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                } else {
+                    // Handle error
+                    alert('There was an error submitting your request. Please try again or contact us directly at Jacqueline.Musiba@outlook.com');
+                    
+                    // Reset button
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalText;
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('There was an error submitting your request. Please try again or contact us directly at Jacqueline.Musiba@outlook.com');
+                
+                // Reset button
+                submitBtn.disabled = false;
+                submitBtn.textContent = originalText;
+            });
         });
         
         // Function to reset form and hide overlay
