@@ -16,7 +16,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:wght@700&family=Italianno&display=swap" rel="stylesheet">
     
     <style>
         :root {
@@ -94,9 +94,9 @@
             display: flex;
             align-items: center;
             position: relative;
-            z-index: 1;
             background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
             overflow: hidden;
+            padding-top: 80px;
         }
         
         .hero-bg-pattern {
@@ -117,7 +117,7 @@
         }
         
         .hero-title {
-            font-size: 3.5rem;
+            font-size: 3rem;
             font-weight: 700;
             color: white;
             margin-bottom: 20px;
@@ -149,6 +149,16 @@
             border: 5px solid rgba(255,255,255,0.2);
         }
         
+        .hero-name {
+            font-family: 'Italianno', cursive;
+            font-size: 2.2rem;
+            color: white;
+            text-align: center;
+            margin-top: 20px;
+            opacity: 0.95;
+            font-weight: 400;
+        }
+        
         /* Buttons */
         .btn-primary-custom {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
@@ -164,6 +174,7 @@
         .btn-primary-custom:hover {
             transform: translateY(-3px);
             box-shadow: 0 8px 25px rgba(46,125,139,0.4);
+            color: white;
         }
         
         .btn-outline-custom {
@@ -363,10 +374,61 @@
             font-weight: 600;
         }
         
+        /* Contact Section */
+        .contact-section {
+            padding: 100px 0;
+            background: white;
+        }
+        
+        .contact-info {
+            background: linear-gradient(135deg, #f8fffe 0%, #e8f5f3 100%);
+            border-radius: 20px;
+            padding: 40px;
+            margin-bottom: 30px;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        
+        .contact-item i {
+            width: 40px;
+            height: 40px;
+            background: var(--primary-color);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 20px;
+        }
+        
+        .contact-form {
+            background: white;
+            border-radius: 20px;
+            padding: 40px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.1);
+        }
+        
+        .form-control, .form-select {
+            border-radius: 10px;
+            border: 1px solid #e0e0e0;
+            padding: 12px 20px;
+            font-size: 16px;
+            transition: all 0.3s ease;
+        }
+        
+        .form-control:focus, .form-select:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 0.2rem rgba(46,125,139,0.1);
+        }
+        
         /* CTA Section */
         .cta-section {
             padding: 80px 0;
-            background: white;
+            background: linear-gradient(135deg, #f8fffe 0%, white 100%);
             text-align: center;
         }
         
@@ -399,11 +461,7 @@
         /* Responsive */
         @media (max-width: 768px) {
             .hero-title {
-                font-size: 2.5rem;
-
-            }
-            .hero-section {
-                padding: 120px 0;
+                font-size: 2rem;
             }
             
             .hero-subtitle {
@@ -416,6 +474,10 @@
             
             .stat-number {
                 font-size: 2rem;
+            }
+            
+            .hero-name {
+                font-size: 1.8rem;
             }
         }
         
@@ -452,6 +514,16 @@
             0% { transform: rotate(0deg); }
             100% { transform: rotate(360deg); }
         }
+        
+        /* Form Success Message */
+        .form-success {
+            display: none;
+            background: #d4edda;
+            color: #155724;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -486,23 +558,21 @@
     <section class="hero-section" id="home">
         <div class="hero-bg-pattern"></div>
         <div class="container">
-            <div class="row align-items-center min-vh-100">
+            <div class="row align-items-center">
                 <div class="col-lg-6 hero-content" data-aos="fade-right">
-                    <h1 class="hero-title">Jacqueline Musiba-Yapo</h1>
-                    <p class="hero-subtitle">Strategic Resourcing Leader & Certified Career Coach</p>
-                    <p class="text-white mb-4">Leveraging 15+ years of experience driving talent excellence across banking, financial services, consultancy, and healthcare sectors.</p>
+                    <h1 class="hero-title">Strategic Resourcing Leader & Certified Career Coach</h1>
+                    <p class="hero-subtitle">Leveraging 15+ years of experience driving talent excellence across banking, financial services, consultancy, and healthcare sectors.</p>
+                    <p class="text-white mb-4">Transform your career with proven, data-driven strategies from an insider who knows exactly what decision-makers want.</p>
                     <div class="d-flex gap-3 flex-wrap">
-                        <button class="btn btn-primary-custom" onclick="scrollToSection('contact')">
+                        <a href="#contact" class="btn btn-primary-custom">
                             Schedule Strategy Session
-                        </button>
-                        <a href="CV.pdf" class="btn btn-outline-custom" target="_blank">
-                            <i class="fas fa-download me-2"></i>View CV
                         </a>
                     </div>
                 </div>
                 <div class="col-lg-6" data-aos="fade-left">
                     <div class="hero-image text-center">
                         <img src="photo.jpg" alt="Jacqueline Musiba-Yapo">
+                        <div class="hero-name">Jacqueline Musiba-Yapo, MCIPD</div>
                     </div>
                 </div>
             </div>
@@ -512,46 +582,7 @@
     <!-- About Section -->
     <section class="about-section" id="about">
         <div class="container">
-            <div class="text-center mb-5" data-aos="fade-up">
-                <h2 class="section-title">The Insider Advantage</h2>
-            </div>
             
-            <div class="row mb-5">
-                <div class="col-lg-8 mx-auto" data-aos="fade-up">
-                    <p class="lead text-center">
-                        For over 15 years, I sat across the table deciding which candidates got the offer. 
-                        I led Talent Acquisition and HR Transformation for giants across the Private and public sector. 
-                        Now, I channel this extensive experience into my career coaching practice at <strong>ChomzTribe</strong>.
-                    </p>
-                </div>
-            </div>
-            
-            <div class="row mb-5">
-                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="100">
-                    <div class="stat-box">
-                        <div class="stat-number">15+</div>
-                        <p class="mb-0">Years Experience</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="200">
-                    <div class="stat-box">
-                        <div class="stat-number">100s</div>
-                        <p class="mb-0">Executives Placed</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="300">
-                    <div class="stat-box">
-                        <div class="stat-number">50+</div>
-                        <p class="mb-0">International Moves</p>
-                    </div>
-                </div>
-                <div class="col-md-3 col-sm-6" data-aos="fade-up" data-aos-delay="400">
-                    <div class="stat-box">
-                        <div class="stat-number">CIPD</div>
-                        <p class="mb-0">Chartered Member</p>
-                    </div>
-                </div>
-            </div>
             
             <div class="row">
                 <div class="col-lg-6" data-aos="fade-right">
@@ -572,7 +603,7 @@
                     </div>
                     <div class="experience-card">
                         <h5><i class="fas fa-chalkboard-teacher me-2 text-primary"></i>Training Decision-Makers</h5>
-                        <p class="mb-0">Literally wrote the curriculum to train hiring managers on what to look for.</p>
+                        <p class="mb-0">Wrote a curriculum to train hiring managers on what to look for in candidates.</p>
                     </div>
                 </div>
             </div>
@@ -668,7 +699,7 @@
                         </div>
                         <div>
                             <h6 class="mb-1">Leadership Development Programme</h6>
-                            <p class="mb-0 text-muted">London Business School (2023-2024)</p>
+                            <p class="mb-0 text-muted">London Business School</p>
                         </div>
                     </div>
                     <div class="credential-item">
@@ -711,15 +742,6 @@
                             <p class="mb-0 text-muted">Chomz Tribe</p>
                         </div>
                     </div>
-                    <div class="credential-item">
-                        <div class="credential-icon">
-                            <i class="fas fa-trophy"></i>
-                        </div>
-                        <div>
-                            <h6 class="mb-1">D&I Champion Award</h6>
-                            <p class="mb-0 text-muted">Standard Chartered Bank (2021/22)</p>
-                        </div>
-                    </div>
                 </div>
             </div>
         </div>
@@ -739,7 +761,7 @@
                             "Jacqueline has an unparalleled ability to identify top talent and articulate their value. She was instrumental in my promotion journey."
                         </p>
                         <div class="testimonial-author">
-                            — Former Colleague, Standard Chartered
+                            — Former Colleague
                         </div>
                     </div>
                 </div>
@@ -780,8 +802,96 @@
         </div>
     </section>
     
+    <!-- Contact Section -->
+    <section class="contact-section" id="contact">
+        <div class="container">
+            <div class="text-center mb-5" data-aos="fade-up">
+                <h2 class="section-title">Get In Touch</h2>
+                <p class="lead">Ready to transform your career? Let's connect!</p>
+            </div>
+            
+            <div class="row">
+                <div class="col-lg-4" data-aos="fade-right">
+                    <div class="contact-info">
+                        <h4 class="mb-4">Contact Information</h4>
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <h6 class="mb-0">Email</h6>
+                                <a href="mailto:Jacqueline.Musiba@outlook.com" style="color: var(--text-dark); text-decoration: none;">
+                                    Jacqueline.Musiba@outlook.com
+                                </a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <h6 class="mb-0">Phone</h6>
+                                <a href="tel:0753445715" style="color: var(--text-dark); text-decoration: none;">
+                                    0753445715
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="col-lg-8" data-aos="fade-left">
+                    <form class="contact-form" id="contactForm">
+                        <h4 class="mb-4">Schedule Your Free Strategy Session</h4>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">First Name *</label>
+                                <input type="text" class="form-control" name="firstName" required>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label class="form-label">Last Name *</label>
+                                <input type="text" class="form-control" name="lastName" required>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Email Address *</label>
+                            <input type="email" class="form-control" name="email" required>
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Phone Number</label>
+                            <input type="tel" class="form-control" name="phone">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">Current Role/Industry</label>
+                            <input type="text" class="form-control" name="role">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">What coaching service are you interested in? *</label>
+                            <select class="form-select" name="service" required>
+                                <option value="">Select a service...</option>
+                                <option value="CV & LinkedIn Optimization">CV & LinkedIn Optimization</option>
+                                <option value="Interview Mastery">Interview Mastery</option>
+                                <option value="Strategic Negotiation">Strategic Negotiation</option>
+                                <option value="Executive Presence">Executive Presence</option>
+                                <option value="Career Transition Strategy">Career Transition Strategy</option>
+                                <option value="Personal Branding">Personal Branding</option>
+                                <option value="Multiple Services">Multiple Services</option>
+                            </select>
+                        </div>
+                        <div class="mb-4">
+                            <label class="form-label">Tell me about your career goals</label>
+                            <textarea class="form-control" name="message" rows="4"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary-custom btn-lg w-100">
+                            Submit Request
+                        </button>
+                        <div class="form-success" id="formSuccess">
+                            <i class="fas fa-check-circle me-2"></i>
+                            Thank you for your submission! I'll be in touch within 24-48 hours to schedule your free strategy session.
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- CTA Section -->
-    <section class="cta-section" id="contact">
+    <section class="cta-section">
         <div class="container">
             <div class="cta-box" data-aos="zoom-in">
                 <h2 class="mb-4">Ready to Stop Applying and Start Being Sought After?</h2>
@@ -793,9 +903,9 @@
                     We'll discuss your goals, identify your challenges, and explore how my coaching 
                     can provide you with a clear, actionable plan to succeed.
                 </p>
-                <button class="btn btn-lg btn-light px-5 py-3" style="border-radius: 50px; font-weight: 600;">
+                <a href="#contact" class="btn btn-lg btn-light px-5 py-3" style="border-radius: 50px; font-weight: 600;">
                     Schedule Your Free Strategy Session
-                </button>
+                </a>
             </div>
         </div>
     </section>
@@ -853,13 +963,32 @@
             }
         });
         
-        // Smooth scroll to section
-        function scrollToSection(sectionId) {
-            const section = document.getElementById(sectionId);
-            if (section) {
-                section.scrollIntoView({ behavior: 'smooth' });
-            }
-        }
+        // Form submission handler
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const data = Object.fromEntries(formData);
+            
+            // Here you would normally send the data to your server
+            // For demonstration, we'll just show a success message
+            console.log('Form Data:', data);
+            
+            // Show success message
+            document.getElementById('formSuccess').style.display = 'block';
+            
+            // Reset form
+            this.reset();
+            
+            // Scroll to success message
+            document.getElementById('formSuccess').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // Hide success message after 10 seconds
+            setTimeout(function() {
+                document.getElementById('formSuccess').style.display = 'none';
+            }, 10000);
+        });
         
         // Smooth scroll for navigation links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
