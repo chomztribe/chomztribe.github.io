@@ -5,6 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Jacqueline Musiba | ChomzTribe Coaching - Strategic Career Coach London</title>
     <meta name="description" content="ChomzTribe Coaching by Jacqueline Musiba, MCIPD - Strategic Career Coach with 15+ years experience in talent acquisition and resourcing leadership.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="logo.ico">
+    <link rel="icon" type="image/png" href="logo.png">
     
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -62,6 +66,11 @@
             font-size: 1.8rem;
             font-weight: 900;
             color: var(--primary-color) !important;
+        }
+
+        .navbar-brand img {
+            height: 50px;
+            width: auto;
         }
         
         .navbar-nav .nav-link {
@@ -138,14 +147,21 @@
         }
         
         .hero-image img {
-            width: 280px;
-            height: 280px;
+            width: 100%;
+            max-width: 500px;
+            height: auto;
             object-fit: cover;
-            border-radius: 50%;
+            border-radius: 20px;
             box-shadow: 0 20px 50px rgba(0,0,0,0.15);
-            border: 5px solid var(--white);
             margin: 0 auto;
             display: block;
+        }
+
+        .hero-image img.profile-photo {
+            width: 280px;
+            height: 280px;
+            border-radius: 50%;
+            border: 5px solid var(--white);
         }
         
         .hero-name {
@@ -227,7 +243,7 @@
         .services-section {
             background: var(--light-bg);
         }
-        
+
         .service-card {
             background: var(--white);
             border-radius: 15px;
@@ -236,13 +252,14 @@
             height: 100%;
             transition: all 0.3s ease;
             border: 1px solid var(--border-light);
+            overflow: hidden;
         }
-        
+
         .service-card:hover {
             transform: translateY(-10px);
             box-shadow: 0 20px 40px rgba(0,0,0,0.12);
         }
-        
+
         .service-icon {
             width: 80px;
             height: 80px;
@@ -255,7 +272,15 @@
             font-size: 2rem;
             color: var(--white);
         }
-        
+
+        .service-card-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 12px;
+            margin-bottom: 1.5rem;
+        }
+
         .service-card h4 {
             color: var(--dark-color);
             margin-bottom: 1rem;
@@ -265,14 +290,31 @@
         /* Professional Services */
         .professional-services {
             background: var(--white);
+            position: relative;
         }
-        
+
         .ta-services-card {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
             border-radius: 20px;
             padding: 3rem;
             box-shadow: 0 20px 50px rgba(46,125,139,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .ta-services-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 50%;
+            height: 100%;
+            background-image: url('unnamed.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            border-radius: 20px;
         }
         
         .ta-services-card h3 {
@@ -347,30 +389,117 @@
             background: var(--primary-color);
             color: var(--white);
         }
-        
+
         .testimonials-section .section-title {
             color: var(--white);
         }
-        
+
+        .testimonials-carousel {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem 0;
+        }
+
         .testimonial-card {
             background: var(--white);
             color: var(--text-dark);
-            border-radius: 15px;
-            padding: 2.5rem;
-            margin-bottom: 2rem;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-radius: 20px;
+            padding: 3.5rem;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+            display: none;
+            animation: fadeIn 0.5s ease-in;
         }
-        
+
+        .testimonial-card.active {
+            display: block;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
         .testimonial-text {
             font-style: italic;
-            font-size: 1.1rem;
-            margin-bottom: 1.5rem;
-            line-height: 1.8;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            line-height: 1.9;
+            position: relative;
         }
-        
+
+        .testimonial-text::before {
+            content: '"';
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: -15px;
+            font-family: Georgia, serif;
+        }
+
         .testimonial-author {
             color: var(--primary-color);
             font-weight: 600;
+            font-size: 1.1rem;
+            margin-top: 1.5rem;
+        }
+
+        .testimonial-nav {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 2rem;
+            margin-top: 3rem;
+        }
+
+        .testimonial-btn {
+            background: var(--white);
+            color: var(--primary-color);
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 1.2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .testimonial-btn:hover {
+            background: var(--accent-color);
+            color: var(--white);
+            transform: scale(1.1);
+        }
+
+        .testimonial-indicators {
+            display: flex;
+            gap: 10px;
+        }
+
+        .indicator-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .indicator-dot.active {
+            background: var(--white);
+            width: 30px;
+            border-radius: 6px;
         }
         
         /* Contact */
@@ -428,8 +557,24 @@
         .cta-section {
             background: var(--light-bg);
             padding: 100px 0;
+            position: relative;
+            overflow: hidden;
         }
-        
+
+        .cta-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('transition.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
         .cta-box {
             background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
             color: var(--white);
@@ -437,13 +582,15 @@
             padding: 4rem;
             text-align: center;
             box-shadow: 0 20px 60px rgba(46,125,139,0.3);
+            position: relative;
+            z-index: 1;
         }
-        
+
         .cta-box h2 {
             font-size: 2.5rem;
             margin-bottom: 1.5rem;
         }
-        
+
         .cta-box .btn-light {
             background: var(--white);
             color: var(--primary-color);
@@ -452,7 +599,7 @@
             border-radius: 50px;
             transition: all 0.3s ease;
         }
-        
+
         .cta-box .btn-light:hover {
             transform: translateY(-3px);
             box-shadow: 0 10px 30px rgba(0,0,0,0.2);
@@ -483,63 +630,88 @@
             .hero-title {
                 font-size: 2.5rem;
             }
-            
+
             .hero-section {
                 padding: 120px 0 60px;
             }
-            
+
             .hero-image img {
+                max-width: 100%;
+            }
+
+            .hero-image img.profile-photo {
                 width: 220px;
                 height: 220px;
             }
-            
+
             .hero-name {
                 font-size: 1.6rem;
             }
-            
+
             .section-title {
                 font-size: 2rem;
             }
-            
+
             .navbar-nav .nav-link {
                 margin: 0.5rem 0;
             }
-            
+
             .cta-box {
                 padding: 3rem 2rem;
             }
-            
+
             .cta-box h2 {
                 font-size: 2rem;
             }
+
+            .service-card-image {
+                height: 180px;
+            }
+
+            .ta-services-card::before {
+                width: 100%;
+                opacity: 0.08;
+            }
         }
-        
+
         @media (max-width: 576px) {
             .hero-title {
                 font-size: 2rem;
             }
-            
+
             .hero-subtitle {
                 font-size: 1.1rem;
             }
-            
+
             .hero-section {
                 padding: 100px 0 50px;
             }
-            
+
             .hero-image img {
+                max-width: 100%;
+            }
+
+            .hero-image img.profile-photo {
                 width: 180px;
                 height: 180px;
                 border: 3px solid var(--white);
             }
-            
+
             .hero-name {
                 font-size: 1.4rem;
                 margin-top: 1rem;
             }
-            
+
             .section {
                 padding: 60px 0;
+            }
+
+            .service-card-image {
+                height: 150px;
+            }
+
+            .cta-section::before {
+                opacity: 0.05;
             }
         }
     </style>
@@ -549,7 +721,9 @@
     <!-- Navigation -->
     <nav class="navbar navbar-expand-lg fixed-top" id="mainNav">
         <div class="container">
-            <a class="navbar-brand" href="#home">ChomzTribe</a>
+            <a class="navbar-brand" href="#home">
+                <img src="logo.png" alt="ChomzTribe">
+            </a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -592,7 +766,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class="hero-image">
-                        <img src="photo.jpg" alt="Jacqueline Musiba" class="img-fluid">
+                        <img src="photo.jpg" alt="Jacqueline Musiba" class="img-fluid profile-photo">
                         <h3 class="hero-name">Jacqueline Musiba, MCIPD</h3>
                     </div>
                 </div>
@@ -644,54 +818,42 @@
             <div class="row g-4">
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-file-alt"></i>
-                        </div>
+                        <img src="cv.png" alt="CV Optimization" class="service-card-image">
                         <h4>CV & LinkedIn Optimization</h4>
                         <p>Transform your profile from passive history into a dynamic, keyword-optimized business case that gets noticed.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-comments"></i>
-                        </div>
+                        <img src="interview.png" alt="Interview Coaching" class="service-card-image">
                         <h4>Interview Mastery</h4>
                         <p>Learn to articulate your value with confidence using the STAR method and strategic storytelling.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-handshake"></i>
-                        </div>
+                        <img src="hero.png" alt="Strategic Negotiation" class="service-card-image">
                         <h4>Strategic Negotiation</h4>
                         <p>Gain confidence and tactics to negotiate your salary effectively, ensuring fair compensation.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-crown"></i>
-                        </div>
+                        <img src="executive.png" alt="Executive Presence" class="service-card-image">
                         <h4>Executive Presence</h4>
                         <p>Develop the communication and leadership aura required to secure promotions and excel in senior roles.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-exchange-alt"></i>
-                        </div>
+                        <img src="transition.png" alt="Career Transition" class="service-card-image">
                         <h4>Career Transition Strategy</h4>
                         <p>Plan and execute a successful pivot into a new industry or leadership level with clarity and purpose.</p>
                     </div>
                 </div>
                 <div class="col-lg-4 col-md-6">
                     <div class="service-card">
-                        <div class="service-icon">
-                            <i class="fas fa-star"></i>
-                        </div>
+                        <img src="brand.png" alt="Personal Branding" class="service-card-image">
                         <h4>Personal Branding</h4>
                         <p>Build a powerful professional brand that attracts opportunities and establishes you as a thought leader.</p>
                     </div>
@@ -794,39 +956,67 @@
     <section class="testimonials-section section" id="testimonials">
         <div class="container">
             <h2 class="section-title">What My Clients Say</h2>
-            
-            <div class="row">
-                <div class="col-lg-6">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">
-                            "Jacqueline has an unparalleled ability to identify top talent and articulate their value. She was instrumental in my promotion journey."
-                        </p>
-                        <p class="testimonial-author">— Former Colleague, UAE</p>
-                    </div>
+
+            <div class="testimonials-carousel">
+                <div class="testimonial-card active">
+                    <p class="testimonial-text">
+                        Jacqueline has an unparalleled ability to identify top talent and articulate their value. She was instrumental in my promotion journey.
+                    </p>
+                    <p class="testimonial-author">— Former Colleague, UAE</p>
                 </div>
-                <div class="col-lg-6">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">
-                            "Her insight into what hiring managers are really looking for completely changed my approach. I landed my dream role in 3 months."
-                        </p>
-                        <p class="testimonial-author">— Coaching Client, Ivory Coast</p>
-                    </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        Her insight into what hiring managers are really looking for completely changed my approach. I landed my dream role in 3 months.
+                    </p>
+                    <p class="testimonial-author">— Coaching Client, Ivory Coast</p>
                 </div>
-                <div class="col-lg-6">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">
-                            "I was ready to accept a mediocre offer out of desperation. Jacqueline gave me the framework to negotiate confidently. The result? A £15k increase on my initial offer and a title I was proud of."
-                        </p>
-                        <p class="testimonial-author">— David T., Project Director, UK</p>
-                    </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        I was ready to accept a mediocre offer out of desperation. Jacqueline gave me the framework to negotiate confidently. The result? A £15k increase on my initial offer and a title I was proud of.
+                    </p>
+                    <p class="testimonial-author">— David T., Project Director, UK</p>
                 </div>
-                <div class="col-lg-6">
-                    <div class="testimonial-card">
-                        <p class="testimonial-text">
-                            "After a decade in one industry, I felt completely lost on how to pivot. She didn't just help me change jobs; she helped me change my entire career trajectory."
-                        </p>
-                        <p class="testimonial-author">— Sarah L., Marketing Lead, Qatar</p>
-                    </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        After a decade in one industry, I felt completely lost on how to pivot. She didn't just help me change jobs; she helped me change my entire career trajectory.
+                    </p>
+                    <p class="testimonial-author">— Sarah L., Marketing Lead, Qatar</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        I felt completely stuck and unsure of my next move. Jacqueline didn't just give me generic advice; she provided a structured framework to evaluate my skills, values, and goals. Through her expert guidance, I gained the clarity to navigate a successful career pivot into a field I'm truly passionate about. She is a strategic thinker who empowers you to become the architect of your own career. If you're feeling lost, working with Jacqueline is the best investment you can make in your professional future.
+                    </p>
+                    <p class="testimonial-author">— Paul Adeyemi, Senior Project Manager, Singapore</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        I knew I needed to uplevel my personal brand but had no idea where to start. Jacqueline was phenomenal! She helped me refine my unique value proposition and completely transform my CV profile from a basic resume into a powerful tool. Her insights on content strategy and networking have directly led to new, high-quality opportunities coming to me.
+                    </p>
+                    <p class="testimonial-author">— Abubakar Sayed, Marketing Consultant, UK</p>
+                </div>
+
+                <div class="testimonial-card">
+                    <p class="testimonial-text">
+                        I used to dread interviews, often freezing on tough questions. Jacqueline's coaching was a game-changer. She didn't just do mock interviews; she equipped me with techniques to manage my anxiety, reframe my mindset, and articulate my accomplishments with compelling stories. I walked into my last interview with genuine confidence, not just prepared answers, and landed the job! Her methods build a foundation of self-assurance that lasts far beyond a single interview.
+                    </p>
+                    <p class="testimonial-author">— David Ajamu, Software Engineer, Qatar, UAE</p>
+                </div>
+
+                <div class="testimonial-nav">
+                    <button class="testimonial-btn" id="prevBtn">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+
+                    <div class="testimonial-indicators" id="indicators"></div>
+
+                    <button class="testimonial-btn" id="nextBtn">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
                 </div>
             </div>
         </div>
@@ -973,6 +1163,52 @@
             });
         });
         
+        // Testimonials Carousel
+        const testimonials = document.querySelectorAll('.testimonial-card');
+        const prevBtn = document.getElementById('prevBtn');
+        const nextBtn = document.getElementById('nextBtn');
+        const indicatorsContainer = document.getElementById('indicators');
+        let currentTestimonial = 0;
+
+        // Create indicator dots
+        testimonials.forEach((_, index) => {
+            const dot = document.createElement('div');
+            dot.classList.add('indicator-dot');
+            if (index === 0) dot.classList.add('active');
+            dot.addEventListener('click', () => showTestimonial(index));
+            indicatorsContainer.appendChild(dot);
+        });
+
+        const indicators = document.querySelectorAll('.indicator-dot');
+
+        function showTestimonial(index) {
+            testimonials[currentTestimonial].classList.remove('active');
+            indicators[currentTestimonial].classList.remove('active');
+
+            currentTestimonial = index;
+
+            testimonials[currentTestimonial].classList.add('active');
+            indicators[currentTestimonial].classList.add('active');
+        }
+
+        function nextTestimonial() {
+            let next = currentTestimonial + 1;
+            if (next >= testimonials.length) next = 0;
+            showTestimonial(next);
+        }
+
+        function prevTestimonial() {
+            let prev = currentTestimonial - 1;
+            if (prev < 0) prev = testimonials.length - 1;
+            showTestimonial(prev);
+        }
+
+        nextBtn.addEventListener('click', nextTestimonial);
+        prevBtn.addEventListener('click', prevTestimonial);
+
+        // Auto-advance testimonials every 8 seconds
+        setInterval(nextTestimonial, 8000);
+
         // Form submission with Web3Forms
         document.getElementById('contactForm').addEventListener('submit', function(e) {
             e.preventDefault();
