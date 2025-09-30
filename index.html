@@ -299,30 +299,84 @@
         .about-section {
             background: var(--white);
         }
-        
-        .expertise-card {
+
+        .progress-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 40px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .progress-item {
+            text-align: center;
+            padding: 30px;
             background: var(--light-bg);
-            border-radius: 12px;
-            padding: 2rem;
-            height: 100%;
+            border-radius: 20px;
             transition: all 0.3s ease;
-            border: 1px solid var(--border-light);
         }
-        
-        .expertise-card:hover {
+
+        .progress-item:hover {
+            background: white;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
         }
-        
-        .expertise-card h5 {
+
+        .progress-ring {
+            width: 150px;
+            height: 150px;
+            margin: 0 auto 25px;
+            position: relative;
+        }
+
+        .progress-ring svg {
+            transform: rotate(-90deg);
+        }
+
+        .progress-ring-circle {
+            fill: none;
+            stroke: var(--border-light);
+            stroke-width: 8;
+        }
+
+        .progress-ring-fill {
+            fill: none;
+            stroke: url(#gradient);
+            stroke-width: 8;
+            stroke-linecap: round;
+            stroke-dasharray: 440;
+            stroke-dashoffset: 110;
+            transition: stroke-dashoffset 1s ease;
+        }
+
+        .progress-item:hover .progress-ring-fill {
+            stroke-dashoffset: 0;
+        }
+
+        .progress-icon {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 3rem;
             color: var(--primary-color);
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
         }
-        
-        .expertise-card i {
-            color: var(--secondary-color);
-            margin-right: 0.5rem;
+
+        .progress-item h5 {
+            color: var(--primary-color);
+            font-size: 1.4rem;
+            margin-bottom: 10px;
+        }
+
+        .progress-item p {
+            color: var(--text-dark);
+            margin: 0;
+        }
+
+        @media (max-width: 768px) {
+            .progress-grid {
+                grid-template-columns: 1fr;
+            }
         }
         
         /* Services Section */
@@ -986,30 +1040,71 @@
             <h2 class="section-title">Corporate Expertise</h2>
             <p class="section-subtitle">Transforming careers through insider knowledge</p>
             
-            <div class="row g-4">
-                <div class="col-md-6">
-                    <div class="expertise-card">
-                        <h5><i class="fas fa-briefcase"></i> Hiring & Strategy</h5>
-                        <p>Hired and placed C-suite executives, and designed recruitment models for private and public sector institutions</p>
+            <!-- SVG Gradient Definition -->
+            <svg width="0" height="0">
+                <defs>
+                    <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style="stop-color:#2E7D8B;stop-opacity:1" />
+                        <stop offset="100%" style="stop-color:#5CB8A9;stop-opacity:1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+
+            <div class="progress-grid">
+                <div class="progress-item">
+                    <div class="progress-ring">
+                        <svg width="150" height="150">
+                            <circle class="progress-ring-circle" cx="75" cy="75" r="70"></circle>
+                            <circle class="progress-ring-fill" cx="75" cy="75" r="70"></circle>
+                        </svg>
+                        <div class="progress-icon">
+                            <i class="fas fa-briefcase"></i>
+                        </div>
                     </div>
+                    <h5>Hiring & Strategy</h5>
+                    <p>Hired and placed C-suite executives, and designed recruitment models for private and public sector institutions</p>
                 </div>
-                <div class="col-md-6">
-                    <div class="expertise-card">
-                        <h5><i class="fas fa-users"></i> Diversity & Inclusion</h5>
-                        <p>Awarded for creating programs that advanced underrepresented talent.</p>
+
+                <div class="progress-item">
+                    <div class="progress-ring">
+                        <svg width="150" height="150">
+                            <circle class="progress-ring-circle" cx="75" cy="75" r="70"></circle>
+                            <circle class="progress-ring-fill" cx="75" cy="75" r="70"></circle>
+                        </svg>
+                        <div class="progress-icon">
+                            <i class="fas fa-users"></i>
+                        </div>
                     </div>
+                    <h5>Diversity & Inclusion</h5>
+                    <p>Awarded for creating programs that advanced underrepresented talent.</p>
                 </div>
-                <div class="col-md-6">
-                    <div class="expertise-card">
-                        <h5><i class="fas fa-chart-line"></i> Data-Driven Decisions</h5>
-                        <p>Used analytics to optimize hiring. I'll show you how to use data to position yourself effectively.</p>
+
+                <div class="progress-item">
+                    <div class="progress-ring">
+                        <svg width="150" height="150">
+                            <circle class="progress-ring-circle" cx="75" cy="75" r="70"></circle>
+                            <circle class="progress-ring-fill" cx="75" cy="75" r="70"></circle>
+                        </svg>
+                        <div class="progress-icon">
+                            <i class="fas fa-chart-line"></i>
+                        </div>
                     </div>
+                    <h5>Data-Driven Decisions</h5>
+                    <p>Used analytics to optimize hiring. I'll show you how to use data to position yourself effectively.</p>
                 </div>
-                <div class="col-md-6">
-                    <div class="expertise-card">
-                        <h5><i class="fas fa-chalkboard-teacher"></i> Training Decision-Makers</h5>
-                        <p>Wrote a curriculum to train hiring managers on what to look for in candidates.</p>
+
+                <div class="progress-item">
+                    <div class="progress-ring">
+                        <svg width="150" height="150">
+                            <circle class="progress-ring-circle" cx="75" cy="75" r="70"></circle>
+                            <circle class="progress-ring-fill" cx="75" cy="75" r="70"></circle>
+                        </svg>
+                        <div class="progress-icon">
+                            <i class="fas fa-chalkboard-teacher"></i>
+                        </div>
                     </div>
+                    <h5>Training Decision-Makers</h5>
+                    <p>Wrote a curriculum to train hiring managers on what to look for in candidates.</p>
                 </div>
             </div>
         </div>
@@ -1353,7 +1448,7 @@
                 <div class="footer-bottom-left">
                     <span>&copy; 2025 ChomzTribe Coaching. All rights reserved.</span>
                 </div>
-                <span>Career Coach London | Executive Coaching UK</span>
+                <span>Career Coach | Executive Coaching </span>
             </div>
         </div>
     </footer>
