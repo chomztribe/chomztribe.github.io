@@ -537,10 +537,33 @@
         .testimonials-section {
             background: var(--primary-color);
             color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .testimonials-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('what.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.15;
+            z-index: 0;
+        }
+
+        .testimonials-section .container {
+            position: relative;
+            z-index: 1;
         }
 
         .testimonials-section .section-title {
             color: var(--white);
+            position: relative;
+            z-index: 1;
         }
 
         .testimonials-carousel {
@@ -548,6 +571,7 @@
             max-width: 900px;
             margin: 0 auto;
             padding: 2rem 0;
+            z-index: 1;
         }
 
         .testimonial-card {
@@ -558,6 +582,8 @@
             box-shadow: 0 20px 60px rgba(0,0,0,0.2);
             display: none;
             animation: fadeIn 0.5s ease-in;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-card.active {
@@ -607,6 +633,8 @@
             align-items: center;
             gap: 2rem;
             margin-top: 3rem;
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-btn {
@@ -623,6 +651,8 @@
             transition: all 0.3s ease;
             font-size: 1.2rem;
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            position: relative;
+            z-index: 1;
         }
 
         .testimonial-btn:hover {
@@ -634,6 +664,8 @@
         .testimonial-indicators {
             display: flex;
             gap: 10px;
+            position: relative;
+            z-index: 1;
         }
 
         .indicator-dot {
@@ -717,7 +749,7 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url('transition.png');
+            background-image: url('ready.png');
             background-size: cover;
             background-position: center;
             opacity: 0.1;
@@ -731,6 +763,26 @@
             padding: 4rem;
             text-align: center;
             box-shadow: 0 20px 60px rgba(46,125,139,0.3);
+            position: relative;
+            z-index: 1;
+            overflow: hidden;
+        }
+
+        .cta-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('ready.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.1;
+            z-index: 0;
+        }
+
+        .cta-box > * {
             position: relative;
             z-index: 1;
         }
@@ -1405,7 +1457,7 @@
                             <div>
                                 <h6 class="mb-0">Email</h6>
                                 <a href="mailto:Jacqueline.Musiba@outlook.com" class="text-decoration-none text-dark">
-                                    Jacqueline.Musiba@outlook.com
+                                    chomztribe@outlook.com
                                 </a>
                             </div>
                         </div>
@@ -1655,7 +1707,7 @@
                     submitBtn.textContent = originalText;
                 } else {
                     // Handle error
-                    alert('There was an error submitting your request. Please try again or contact us directly at Jacqueline.Musiba@outlook.com');
+                    alert('There was an error submitting your request. Please try again or contact us directly at chomztribe@outlook.com');
                     
                     // Reset button
                     submitBtn.disabled = false;
@@ -1664,7 +1716,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('There was an error submitting your request. Please try again or contact us directly at Jacqueline.Musiba@outlook.com');
+                alert('There was an error submitting your request. Please try again or contact us directly at chomztribe@outlook.com');
                 
                 // Reset button
                 submitBtn.disabled = false;
