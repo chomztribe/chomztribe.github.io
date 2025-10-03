@@ -388,6 +388,192 @@
             }
         }
         
+        /* Statistics Section */
+        .stats-section {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            color: var(--white);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stats-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('data.png');
+            background-size: cover;
+            background-position: center;
+            opacity: 0.08;
+            z-index: 0;
+        }
+
+        .stats-section .container {
+            position: relative;
+            z-index: 1;
+        }
+
+        .stats-section .section-title {
+            color: var(--white);
+        }
+
+        .stats-section .section-subtitle {
+            color: rgba(255, 255, 255, 0.9);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-bottom: 3rem;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 2.5rem 2rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.25);
+        }
+
+        .stat-icon {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1.5rem;
+            font-size: 2rem;
+            color: var(--white);
+            box-shadow: 0 10px 25px rgba(46, 125, 139, 0.3);
+        }
+
+        .stat-content {
+            color: var(--text-dark);
+        }
+
+        .stat-title {
+            font-size: 1.4rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+            font-weight: 700;
+        }
+
+        .stat-number {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: var(--primary-color);
+            line-height: 1;
+            margin-bottom: 0.5rem;
+            font-family: 'Inter', sans-serif;
+        }
+
+        .stat-suffix {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--secondary-color);
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: var(--text-light);
+            margin-bottom: 1rem;
+            font-weight: 500;
+        }
+
+        .stat-secondary {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 2px solid var(--border-light);
+        }
+
+        .stat-secondary .count,
+        .stat-secondary .stat-suffix {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--dark-color);
+        }
+
+        .stat-sublabel {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            margin-left: 0.3rem;
+        }
+
+        .stats-note {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 15px;
+            padding: 1.5rem 2rem;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .stats-note p {
+            margin: 0;
+            color: rgba(255, 255, 255, 0.95);
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        .stats-note i {
+            color: var(--accent-color);
+            margin-right: 0.5rem;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .stats-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-number {
+                font-size: 2.5rem;
+            }
+
+            .stat-suffix {
+                font-size: 1.8rem;
+            }
+
+            .stat-card {
+                padding: 2rem 1.5rem;
+            }
+
+            .stats-note {
+                padding: 1.25rem 1.5rem;
+            }
+
+            .stats-note p {
+                font-size: 0.95rem;
+            }
+        }
+
         /* Services Section */
         .services-section {
             background: var(--light-bg);
@@ -1229,6 +1415,70 @@
         </div>
     </section>
     
+    <!-- Statistics Section -->
+    <section class="stats-section section">
+        <div class="container">
+            <h2 class="section-title">Global Employment Landscape</h2>
+            <p class="section-subtitle">Understanding the market we serve</p>
+
+            <div class="stats-grid">
+                <!-- UK Stats -->
+                <div class="stat-card uk-stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-title">United Kingdom</h3>
+                        <div class="stat-number">
+                            <span class="count" data-target="4.7">0</span><span class="stat-suffix">%</span>
+                        </div>
+                        <p class="stat-label">Unemployment Rate 2025</p>
+                        <div class="stat-secondary">
+                            <span class="count" data-target="36.8">0</span><span class="stat-suffix">M</span>
+                            <span class="stat-sublabel">Labour Force</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- North Africa Stats -->
+                <div class="stat-card africa-north-stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-title">North Africa</h3>
+                        <div class="stat-number">
+                            <span class="count" data-target="7">0</span><span class="stat-suffix">-</span><span class="count" data-target="8">0</span><span class="stat-suffix">%</span>
+                        </div>
+                        <p class="stat-label">Unemployment Rate 2025</p>
+                    </div>
+                </div>
+
+                <!-- Sub-Saharan Africa Stats -->
+                <div class="stat-card africa-sub-stat">
+                    <div class="stat-icon">
+                        <i class="fas fa-globe-africa"></i>
+                    </div>
+                    <div class="stat-content">
+                        <h3 class="stat-title">Sub-Saharan Africa</h3>
+                        <div class="stat-number">
+                            <span class="count" data-target="20">0</span><span class="stat-suffix">-</span><span class="count" data-target="30">0</span><span class="stat-suffix">%</span>
+                        </div>
+                        <p class="stat-label">Unemployment Rate 2025</p>
+                        <div class="stat-secondary">
+                            <span class="count" data-target="450">0</span><span class="stat-suffix">M</span>
+                            <span class="stat-sublabel">Labour Force</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="stats-note">
+                <p><i class="fas fa-info-circle"></i> These employment statistics highlight the diverse markets where strategic career guidance and talent acquisition expertise can make a meaningful impact.</p>
+            </div>
+        </div>
+    </section>
+
     <!-- Services Section -->
     <section class="services-section section" id="services">
         <div class="container">
@@ -1456,8 +1706,8 @@
                             <i class="fas fa-envelope"></i>
                             <div>
                                 <h6 class="mb-0">Email</h6>
-                                <a href="mailto:chomztribe@outlook.com" class="text-decoration-none text-dark">
-                                    chomztribe@outlook.com
+                                <a href="mailto:Jacqueline.Musiba@outlook.com" class="text-decoration-none text-dark">
+                                    Jacqueline.Musiba@outlook.com
                                 </a>
                             </div>
                         </div>
@@ -1552,12 +1802,12 @@
                 </div>
 
                 <div class="footer-links">
-                    <a href="mailto:chomztribe@outlook.com"><i class="fas fa-envelope"></i> chomztribe@outlook.com</a>
+                    <a href="mailto:Jacqueline.Musiba@outlook.com"><i class="fas fa-envelope"></i> Jacqueline.Musiba@outlook.com</a>
                     <a href="tel:+447534457715"><i class="fas fa-phone"></i> +44 7534 457715</a>
                 </div>
 
                 <div class="social-links">
-                    <a href="mailto:chomztribe@outlook.com" title="Email"><i class="fas fa-envelope"></i></a>
+                    <a href="mailto:Jacqueline.Musiba@outlook.com" title="Email"><i class="fas fa-envelope"></i></a>
                     <a href="tel:+447534457715" title="Phone"><i class="fas fa-phone"></i></a>
                     <a href="#" title="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
                 </div>
@@ -1628,6 +1878,46 @@
 
         // Auto-advance hero slider every 5 seconds
         setInterval(nextSlide, 5000);
+
+        // Stats Counter Animation
+        const statsSection = document.querySelector('.stats-section');
+        let statsAnimated = false;
+
+        function animateCounter(element) {
+            const target = parseFloat(element.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const increment = target / (duration / 16); // 60fps
+            let current = 0;
+
+            const updateCounter = () => {
+                current += increment;
+                if (current < target) {
+                    element.textContent = Math.floor(current * 10) / 10;
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    element.textContent = target;
+                }
+            };
+
+            updateCounter();
+        }
+
+        function checkStatsInView() {
+            if (statsAnimated) return;
+
+            const rect = statsSection.getBoundingClientRect();
+            const isInView = rect.top <= window.innerHeight * 0.75;
+
+            if (isInView) {
+                statsAnimated = true;
+                const counters = document.querySelectorAll('.stat-card .count');
+                counters.forEach(counter => animateCounter(counter));
+            }
+        }
+
+        // Check on scroll and on load
+        window.addEventListener('scroll', checkStatsInView);
+        window.addEventListener('load', checkStatsInView);
 
         // Testimonials Carousel
         const testimonials = document.querySelectorAll('.testimonial-card');
@@ -1707,7 +1997,7 @@
                     submitBtn.textContent = originalText;
                 } else {
                     // Handle error
-                    alert('There was an error submitting your request. Please try again or contact us directly at chomztribe@outlook.com');
+                    alert('There was an error submitting your request. Please try again or contact us directly at Jacqueline.Musiba@outlook.com');
                     
                     // Reset button
                     submitBtn.disabled = false;
@@ -1716,7 +2006,7 @@
             })
             .catch(error => {
                 console.error('Error:', error);
-                alert('There was an error submitting your request. Please try again or contact us directly at chomztribe@outlook.com');
+                alert('There was an error submitting your request. Please try again or contact us directly at Jacqueline.Musiba@outlook.com');
                 
                 // Reset button
                 submitBtn.disabled = false;
@@ -1726,7 +2016,6 @@
     </script>
 </body>
 </html>
-
 
 
 
