@@ -1,0 +1,873 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DBS - High Praise Chapel</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #1a1a1a;
+            --secondary-color: #333333;
+            --accent-color: #4a4a4a;
+            --gold-accent: #c9a227;
+            --light-bg: #f8f9fa;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        .form-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header-section {
+            background: var(--primary-color);
+            color: white;
+            padding: 40px 30px;
+            border-radius: 20px 20px 0 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle at top right, rgba(201, 162, 39, 0.1) 0%, transparent 50%);
+        }
+
+        .logo-container {
+            width: 120px;
+            height: 120px;
+            margin: 0 auto 20px;
+            background: white;
+            border-radius: 50%;
+            padding: 10px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .logo-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+
+        .header-title {
+            font-size: 2rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .header-subtitle {
+            font-size: 1.1rem;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .tagline {
+            font-size: 0.9rem;
+            margin-top: 15px;
+            color: var(--gold-accent);
+            font-style: italic;
+        }
+
+        .form-body {
+            background: white;
+            padding: 40px;
+            border-radius: 0 0 20px 20px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.1);
+        }
+
+        .section-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            margin-bottom: 25px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid var(--gold-accent);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .section-title i {
+            color: var(--gold-accent);
+        }
+
+        .form-section {
+            margin-bottom: 40px;
+        }
+
+        .form-label {
+            font-weight: 500;
+            color: var(--secondary-color);
+            margin-bottom: 8px;
+        }
+
+        .form-control, .form-select {
+            border: 2px solid #e0e0e0;
+            border-radius: 10px;
+            padding: 12px 15px;
+            transition: all 0.3s ease;
+        }
+
+        .form-control:focus, .form-select:focus {
+            border-color: var(--gold-accent);
+            box-shadow: 0 0 0 3px rgba(201, 162, 39, 0.1);
+        }
+
+        .required-field::after {
+            content: ' *';
+            color: #dc3545;
+        }
+
+        .name-entry, .address-entry {
+            background: var(--light-bg);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 15px;
+            border: 1px solid #e0e0e0;
+            position: relative;
+        }
+
+        .remove-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #dc3545;
+            color: white;
+            border: none;
+            border-radius: 50%;
+            width: 30px;
+            height: 30px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .remove-btn:hover {
+            background: #c82333;
+            transform: scale(1.1);
+        }
+
+        .add-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .add-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+
+        .submit-btn {
+            background: linear-gradient(135deg, var(--gold-accent) 0%, #d4af37 100%);
+            color: var(--primary-color);
+            border: none;
+            padding: 15px 50px;
+            border-radius: 50px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(201, 162, 39, 0.4);
+        }
+
+        .submit-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .info-text {
+            font-size: 0.85rem;
+            color: #6c757d;
+            margin-top: 5px;
+        }
+
+        .entry-number {
+            background: var(--gold-accent);
+            color: var(--primary-color);
+            padding: 3px 10px;
+            border-radius: 15px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            display: inline-block;
+        }
+
+        .success-message {
+            display: none;
+            text-align: center;
+            padding: 60px 40px;
+        }
+
+        .success-icon {
+            font-size: 5rem;
+            color: #28a745;
+            margin-bottom: 20px;
+        }
+
+        .success-title {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 15px;
+        }
+
+        .success-text {
+            color: #6c757d;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .form-body {
+                padding: 25px;
+            }
+
+            .header-title {
+                font-size: 1.5rem;
+            }
+
+            .logo-container {
+                width: 100px;
+                height: 100px;
+            }
+        }
+
+        .privacy-notice {
+            background: #fff3cd;
+            border: 1px solid #ffc107;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 30px;
+        }
+
+        .privacy-notice i {
+            color: #856404;
+        }
+
+        .loading-spinner {
+            display: none;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(0, 0, 0, 0.1);
+            border-radius: 50%;
+            border-top-color: var(--primary-color);
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="form-container py-4">
+        <div class="header-section">
+            <div class="logo-container">
+                <img src="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 200'%3E%3Ccircle cx='100' cy='100' r='95' fill='%231a1a1a'/%3E%3Cpath d='M100 30 L100 50 M85 40 L115 40 M100 50 Q100 70 100 90 M70 70 Q85 60 100 70 Q115 60 130 70 M80 90 Q90 110 100 130 M120 90 Q110 110 100 130 M100 130 Q90 150 80 170 M100 130 Q110 150 120 170' stroke='white' stroke-width='4' fill='none'/%3E%3Cpath d='M40 40 Q100 20 160 40' fill='none' stroke='white' stroke-width='2'/%3E%3Ctext x='100' y='35' text-anchor='middle' fill='white' font-size='10' font-weight='bold'%3EHIGH PRAISE CHAPEL%3C/text%3E%3Ctext x='100' y='185' text-anchor='middle' fill='white' font-size='8' font-style='italic'%3EReaching people of different%3C/text%3E%3C/path%3E%3C/svg%3E" alt="High Praise Chapel Logo">
+            </div>
+            <h1 class="header-title">High Praise Chapel</h1>
+            <p class="header-subtitle">Elim City</p>
+            <h2 class="mt-4 mb-0" style="font-size: 1.3rem;">DBS Form for Leaders</h2>
+        </div>
+
+        <div class="form-body">
+            <div id="formContent">
+                <form id="dbsForm">
+                    <!-- Personal Information -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-user"></i>
+                            Personal Information
+                        </h3>
+
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label class="form-label required-field">First Name</label>
+                                <input type="text" class="form-control" id="firstName" name="firstName" required>
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label">Middle Name(s)</label>
+                                <input type="text" class="form-control" id="middleName" name="middleName">
+                            </div>
+                            <div class="col-md-4">
+                                <label class="form-label required-field">Last Name</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName" required>
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                <label class="form-label required-field">Date of Birth</label>
+                                <input type="date" class="form-control" id="dob" name="dob" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">National Insurance Number</label>
+                                <input type="text" class="form-control" id="niNumber" name="niNumber" placeholder="e.g., QQ 12 34 56 C">
+                                <p class="info-text">If you have one</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Names Section -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-id-card"></i>
+                            Names Used Since Birth
+                        </h3>
+                        <p class="text-muted mb-4">Please include ALL names you have used, including maiden names, previous married names, and any name changes. Start with your current name.</p>
+
+                        <div id="namesContainer">
+                            <div class="name-entry" data-entry="1">
+                                <span class="entry-number">Current Name</span>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label required-field">First Name(s)</label>
+                                        <input type="text" class="form-control" name="firstName_1" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">Middle Name(s)</label>
+                                        <input type="text" class="form-control" name="middleName_1">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label required-field">Surname</label>
+                                        <input type="text" class="form-control" name="surname_1" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label required-field">Used From (Month/Year)</label>
+                                        <input type="month" class="form-control" name="nameFrom_1" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Used Until</label>
+                                        <input type="text" class="form-control" value="Present" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="add-btn" onclick="addNameEntry()">
+                            <i class="fas fa-plus"></i> Add Previous Name
+                        </button>
+                    </div>
+
+                    <!-- Address History -->
+                    <div class="form-section">
+                        <h3 class="section-title">
+                            <i class="fas fa-home"></i>
+                            Address History (Last 5 Years)
+                        </h3>
+                        <p class="text-muted mb-4">Please provide ALL addresses where you have lived in the last 5 years, including temporary addresses like student accommodation. Start with your current address.</p>
+
+                        <div id="addressContainer">
+                            <div class="address-entry" data-entry="1">
+                                <span class="entry-number">Current Address</span>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label required-field">Address Line 1</label>
+                                        <input type="text" class="form-control" name="address1_1" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 mb-3">
+                                        <label class="form-label">Address Line 2</label>
+                                        <input type="text" class="form-control" name="address2_1">
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label required-field">Town/City</label>
+                                        <input type="text" class="form-control" name="city_1" required>
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label">County</label>
+                                        <input type="text" class="form-control" name="county_1">
+                                    </div>
+                                    <div class="col-md-4 mb-3">
+                                        <label class="form-label required-field">Postcode</label>
+                                        <input type="text" class="form-control" name="postcode_1" required>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label required-field">Moved In (Month/Year)</label>
+                                        <input type="month" class="form-control" name="addressFrom_1" required>
+                                    </div>
+                                    <div class="col-md-6 mb-3">
+                                        <label class="form-label">Moved Out</label>
+                                        <input type="text" class="form-control" value="Present" disabled>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <button type="button" class="add-btn" onclick="addAddressEntry()">
+                            <i class="fas fa-plus"></i> Add Previous Address
+                        </button>
+                    </div>
+
+                    <!-- Submit Button -->
+                    <div class="text-center">
+                        <button type="submit" class="submit-btn" id="submitBtn">
+                            <span id="submitText">Submit</span>
+                            <div class="loading-spinner" id="loadingSpinner"></div>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Success Message -->
+            <div class="success-message" id="successMessage">
+                <i class="fas fa-check-circle success-icon"></i>
+                <h3 class="success-title">Submitted Successfully!</h3>
+                <p class="success-text">Thank you</p>
+                
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        let nameCount = 1;
+        let addressCount = 1;
+
+        function addNameEntry() {
+            nameCount++;
+            const container = document.getElementById('namesContainer');
+            const entry = document.createElement('div');
+            entry.className = 'name-entry';
+            entry.dataset.entry = nameCount;
+            entry.innerHTML = `
+                <button type="button" class="remove-btn" onclick="removeEntry(this, 'name')">
+                    <i class="fas fa-times"></i>
+                </button>
+                <span class="entry-number">Previous Name ${nameCount - 1}</span>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label required-field">First Name(s)</label>
+                        <input type="text" class="form-control" name="firstName_${nameCount}" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">Middle Name(s)</label>
+                        <input type="text" class="form-control" name="middleName_${nameCount}">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label required-field">Surname</label>
+                        <input type="text" class="form-control" name="surname_${nameCount}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Used From (Month/Year)</label>
+                        <input type="month" class="form-control" name="nameFrom_${nameCount}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Used Until (Month/Year)</label>
+                        <input type="month" class="form-control" name="nameTo_${nameCount}" required>
+                    </div>
+                </div>
+            `;
+            container.appendChild(entry);
+        }
+
+        function addAddressEntry() {
+            addressCount++;
+            const container = document.getElementById('addressContainer');
+            const entry = document.createElement('div');
+            entry.className = 'address-entry';
+            entry.dataset.entry = addressCount;
+            entry.innerHTML = `
+                <button type="button" class="remove-btn" onclick="removeEntry(this, 'address')">
+                    <i class="fas fa-times"></i>
+                </button>
+                <span class="entry-number">Previous Address ${addressCount - 1}</span>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <label class="form-label required-field">Address Line 1</label>
+                        <input type="text" class="form-control" name="address1_${addressCount}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Address Line 2</label>
+                        <input type="text" class="form-control" name="address2_${addressCount}">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label required-field">Town/City</label>
+                        <input type="text" class="form-control" name="city_${addressCount}" required>
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label">County</label>
+                        <input type="text" class="form-control" name="county_${addressCount}">
+                    </div>
+                    <div class="col-md-4 mb-3">
+                        <label class="form-label required-field">Postcode</label>
+                        <input type="text" class="form-control" name="postcode_${addressCount}" required>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Moved In (Month/Year)</label>
+                        <input type="month" class="form-control" name="addressFrom_${addressCount}" required>
+                    </div>
+                    <div class="col-md-6 mb-3">
+                        <label class="form-label required-field">Moved Out (Month/Year)</label>
+                        <input type="month" class="form-control" name="addressTo_${addressCount}" required>
+                    </div>
+                </div>
+            `;
+            container.appendChild(entry);
+        }
+
+        function removeEntry(button, type) {
+            const entry = button.closest(`.${type}-entry`);
+            entry.remove();
+        }
+
+        // Form submission
+        document.getElementById('dbsForm').addEventListener('submit', async function(e) {
+            e.preventDefault();
+            
+            const submitBtn = document.getElementById('submitBtn');
+            const submitText = document.getElementById('submitText');
+            const loadingSpinner = document.getElementById('loadingSpinner');
+            
+            // Show loading state
+            submitBtn.disabled = true;
+            submitText.textContent = 'Submitting...';
+            loadingSpinner.style.display = 'inline-block';
+            
+            // Collect form data
+            const formData = new FormData(this);
+            const data = {
+                timestamp: new Date().toISOString(),
+                firstName: formData.get('firstName'),
+                middleName: formData.get('middleName'),
+                lastName: formData.get('lastName'),
+                dob: formData.get('dob'),
+                niNumber: formData.get('niNumber'),
+                // Previous names (up to 3)
+                prevName1_first: '',
+                prevName1_middle: '',
+                prevName1_surname: '',
+                prevName1_from: '',
+                prevName1_to: '',
+                prevName2_first: '',
+                prevName2_middle: '',
+                prevName2_surname: '',
+                prevName2_from: '',
+                prevName2_to: '',
+                prevName3_first: '',
+                prevName3_middle: '',
+                prevName3_surname: '',
+                prevName3_from: '',
+                prevName3_to: '',
+                // Current address
+                currentAddress1: '',
+                currentAddress2: '',
+                currentCity: '',
+                currentCounty: '',
+                currentPostcode: '',
+                currentAddressFrom: '',
+                // Previous addresses (up to 4)
+                prevAddr1_line1: '',
+                prevAddr1_line2: '',
+                prevAddr1_city: '',
+                prevAddr1_county: '',
+                prevAddr1_postcode: '',
+                prevAddr1_from: '',
+                prevAddr1_to: '',
+                prevAddr2_line1: '',
+                prevAddr2_line2: '',
+                prevAddr2_city: '',
+                prevAddr2_county: '',
+                prevAddr2_postcode: '',
+                prevAddr2_from: '',
+                prevAddr2_to: '',
+                prevAddr3_line1: '',
+                prevAddr3_line2: '',
+                prevAddr3_city: '',
+                prevAddr3_county: '',
+                prevAddr3_postcode: '',
+                prevAddr3_from: '',
+                prevAddr3_to: ''
+            };
+
+            // Collect previous names (skip first entry as that's current name in Personal Info)
+            const nameEntries = document.querySelectorAll('.name-entry');
+            nameEntries.forEach((entry, index) => {
+                if (index < 3) { // Up to 3 previous names
+                    const entryNum = entry.dataset.entry;
+                    const nameIndex = index + 1;
+                    data[`prevName${nameIndex}_first`] = formData.get(`firstName_${entryNum}`) || '';
+                    data[`prevName${nameIndex}_middle`] = formData.get(`middleName_${entryNum}`) || '';
+                    data[`prevName${nameIndex}_surname`] = formData.get(`surname_${entryNum}`) || '';
+                    data[`prevName${nameIndex}_from`] = formData.get(`nameFrom_${entryNum}`) || '';
+                    data[`prevName${nameIndex}_to`] = formData.get(`nameTo_${entryNum}`) || '';
+                }
+            });
+
+            // Collect addresses
+            const addressEntries = document.querySelectorAll('.address-entry');
+            addressEntries.forEach((entry, index) => {
+                const entryNum = entry.dataset.entry;
+                if (index === 0) {
+                    // Current address
+                    data.currentAddress1 = formData.get(`address1_${entryNum}`) || '';
+                    data.currentAddress2 = formData.get(`address2_${entryNum}`) || '';
+                    data.currentCity = formData.get(`city_${entryNum}`) || '';
+                    data.currentCounty = formData.get(`county_${entryNum}`) || '';
+                    data.currentPostcode = formData.get(`postcode_${entryNum}`) || '';
+                    data.currentAddressFrom = formData.get(`addressFrom_${entryNum}`) || '';
+                } else if (index <= 3) {
+                    // Previous addresses (up to 3)
+                    data[`prevAddr${index}_line1`] = formData.get(`address1_${entryNum}`) || '';
+                    data[`prevAddr${index}_line2`] = formData.get(`address2_${entryNum}`) || '';
+                    data[`prevAddr${index}_city`] = formData.get(`city_${entryNum}`) || '';
+                    data[`prevAddr${index}_county`] = formData.get(`county_${entryNum}`) || '';
+                    data[`prevAddr${index}_postcode`] = formData.get(`postcode_${entryNum}`) || '';
+                    data[`prevAddr${index}_from`] = formData.get(`addressFrom_${entryNum}`) || '';
+                    data[`prevAddr${index}_to`] = formData.get(`addressTo_${entryNum}`) || '';
+                }
+            });
+
+            // Log data for development (replace with actual submission)
+            console.log('Form Data:', JSON.stringify(data, null, 2));
+            
+            // IMPORTANT: Replace this URL with your Google Apps Script Web App URL
+            // Instructions for setting up Google Sheets integration are in the comments below
+            const GOOGLE_SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbycCLFKCOqDnp2GEw_zVE0qqw02NYNS1NHni3ngWmY_gSYh-IvTIAjHCpxizTQU0xewdQ/exec';
+            
+            try {
+                const response = await fetch(GOOGLE_SCRIPT_URL, {
+                    method: 'POST',
+                    mode: 'no-cors',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(data)
+                });
+                
+                // Show success message
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('successMessage').style.display = 'block';
+                
+            } catch (error) {
+                console.error('Error:', error);
+                alert('There was an error submitting. Please try again.');
+                
+                // Reset button state
+                submitBtn.disabled = false;
+                submitText.textContent = 'Submit';
+                loadingSpinner.style.display = 'none';
+            }
+        });
+    </script>
+
+    <!--
+    =====================================================
+    GOOGLE SHEETS INTEGRATION INSTRUCTIONS
+    =====================================================
+    
+    To connect this form to Google Sheets, follow these steps:
+    
+    1. Create a new Google Sheet
+       - Go to sheets.google.com and create a new spreadsheet
+       - Name it "DBS Applications - High Praise Chapel"
+       - Create headers in the first row:
+         A1: Timestamp
+         B1: First Name
+         C1: Middle Name
+         D1: Last Name
+         E1: Date of Birth
+         F1: NI Number
+         G1: Prev Name 1 - First
+         H1: Prev Name 1 - Middle
+         I1: Prev Name 1 - Surname
+         J1: Prev Name 1 - From
+         K1: Prev Name 1 - To
+         L1: Prev Name 2 - First
+         M1: Prev Name 2 - Middle
+         N1: Prev Name 2 - Surname
+         O1: Prev Name 2 - From
+         P1: Prev Name 2 - To
+         Q1: Prev Name 3 - First
+         R1: Prev Name 3 - Middle
+         S1: Prev Name 3 - Surname
+         T1: Prev Name 3 - From
+         U1: Prev Name 3 - To
+         V1: Current Address Line 1
+         W1: Current Address Line 2
+         X1: Current City
+         Y1: Current County
+         Z1: Current Postcode
+         AA1: Current Address From
+         AB1: Prev Addr 1 - Line 1
+         AC1: Prev Addr 1 - Line 2
+         AD1: Prev Addr 1 - City
+         AE1: Prev Addr 1 - County
+         AF1: Prev Addr 1 - Postcode
+         AG1: Prev Addr 1 - From
+         AH1: Prev Addr 1 - To
+         AI1: Prev Addr 2 - Line 1
+         AJ1: Prev Addr 2 - Line 2
+         AK1: Prev Addr 2 - City
+         AL1: Prev Addr 2 - County
+         AM1: Prev Addr 2 - Postcode
+         AN1: Prev Addr 2 - From
+         AO1: Prev Addr 2 - To
+         AP1: Prev Addr 3 - Line 1
+         AQ1: Prev Addr 3 - Line 2
+         AR1: Prev Addr 3 - City
+         AS1: Prev Addr 3 - County
+         AT1: Prev Addr 3 - Postcode
+         AU1: Prev Addr 3 - From
+         AV1: Prev Addr 3 - To
+    
+    2. Create a Google Apps Script
+       - In your Google Sheet, go to Extensions > Apps Script
+       - Delete any existing code and paste the following:
+    
+    function doPost(e) {
+        try {
+            var sheet = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+            var data = JSON.parse(e.postData.contents);
+            
+            // Create row data with all fixed columns
+            var row = [
+                data.timestamp,
+                data.firstName,
+                data.middleName,
+                data.lastName,
+                data.dob,
+                data.niNumber,
+                // Previous Name 1
+                data.prevName1_first,
+                data.prevName1_middle,
+                data.prevName1_surname,
+                data.prevName1_from,
+                data.prevName1_to,
+                // Previous Name 2
+                data.prevName2_first,
+                data.prevName2_middle,
+                data.prevName2_surname,
+                data.prevName2_from,
+                data.prevName2_to,
+                // Previous Name 3
+                data.prevName3_first,
+                data.prevName3_middle,
+                data.prevName3_surname,
+                data.prevName3_from,
+                data.prevName3_to,
+                // Current Address
+                data.currentAddress1,
+                data.currentAddress2,
+                data.currentCity,
+                data.currentCounty,
+                data.currentPostcode,
+                data.currentAddressFrom,
+                // Previous Address 1
+                data.prevAddr1_line1,
+                data.prevAddr1_line2,
+                data.prevAddr1_city,
+                data.prevAddr1_county,
+                data.prevAddr1_postcode,
+                data.prevAddr1_from,
+                data.prevAddr1_to,
+                // Previous Address 2
+                data.prevAddr2_line1,
+                data.prevAddr2_line2,
+                data.prevAddr2_city,
+                data.prevAddr2_county,
+                data.prevAddr2_postcode,
+                data.prevAddr2_from,
+                data.prevAddr2_to,
+                // Previous Address 3
+                data.prevAddr3_line1,
+                data.prevAddr3_line2,
+                data.prevAddr3_city,
+                data.prevAddr3_county,
+                data.prevAddr3_postcode,
+                data.prevAddr3_from,
+                data.prevAddr3_to
+            ];
+            
+            sheet.appendRow(row);
+            
+            return ContentService.createTextOutput(JSON.stringify({
+                'result': 'success',
+                'row': row
+            })).setMimeType(ContentService.MimeType.JSON);
+            
+        } catch (error) {
+            return ContentService.createTextOutput(JSON.stringify({
+                'result': 'error',
+                'error': error.toString()
+            })).setMimeType(ContentService.MimeType.JSON);
+        }
+    }
+    
+    function doGet(e) {
+        return ContentService.createTextOutput('DBS Form Handler is running');
+    }
+    
+    3. Deploy as Web App
+       - Click "Deploy" > "New deployment"
+       - Select type: "Web app"
+       - Set "Execute as": "Me"
+       - Set "Who has access": "Anyone"
+       - Click "Deploy"
+       - Copy the Web App URL
+    
+    4. Update the form
+       - Replace 'YOUR_GOOGLE_APPS_SCRIPT_URL_HERE' in this HTML file
+         with your copied Web App URL
+    
+    5. Test the form
+       - Open the HTML file in a browser
+       - Fill out and submit a test entry
+       - Check your Google Sheet for the new row
+    
+    NOTE: For production use, consider:
+    - Adding email notifications (using GmailApp in Apps Script)
+    - Implementing data validation
+    - Adding error logging
+    - Setting up backup procedures
+    =====================================================
+    -->
+</body>
+</html>
